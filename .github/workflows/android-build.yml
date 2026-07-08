@@ -1,0 +1,32 @@
+name: OpenMU Total Cloud Build Perfect
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-server-and-apk:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Kiểm tra và lấy mã nguồn sạch lỗi
+      uses: actions/checkout@v4
+
+    - name: ⚙️ Cấu hình môi trường .NET 10.0 siêu mạnh
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+
+    - name: 📦 Khôi phục toàn bộ thư viện NuGet diện rộng
+      run: dotnet restore MUnique.OpenMU.sln
+
+    - name: 🚀 Biên dịch diện rộng và đóng gói cụm Server
+      run: |
+        dotnet publish MUnique.OpenMU.sln -c Release -o ./ServerOut/
+
+    - name: 📦 Đóng gói sản phẩm Server sạch lỗi gửi về điện thoại
+      uses: actions/upload-artifact@v4
+      with:
+        name: OpenMU-Server-Full-Release
+        path: ./ServerOut/

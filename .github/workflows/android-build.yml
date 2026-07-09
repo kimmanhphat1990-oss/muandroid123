@@ -33,4 +33,5 @@ jobs:
     - name: Restore and Compile Server
       run: |
         dotnet restore ServerBuild.sln -p:NuGetAudit=false -p:AuditLevel=none || true
-        dotnet publish ServerBuild.sln -c Release -o ./ServerOut/ -p:GenerateAssemblyInfo=false -p:Deterministic=false -p:TreatWarningsAsErrors=false -p:MSBuildWarningsAsErrors=false -p:NuGetAudit=false -p:AuditLevel=none -p:NoWarn="NU1901;NU1902;NU1903;NU1904"
+        # Sử dụng nháy đơn lồng nháy kép để ép Linux nuốt trọn chuỗi chặn cảnh báo bảo mật
+        dotnet publish ServerBuild.sln -c Release -o ./ServerOut/ --no-restore -p:GenerateAssemblyInfo=false -p:Deterministic=false -p:TreatWarningsAsErrors=false -p:MSBuildWarningsAsErrors=false -p:NuGetAudit=false -p:AuditLevel=none -p:NoWarn='"NU1901;NU1902;NU1903;NU1904"'

@@ -18,12 +18,12 @@ jobs:
       with:
         dotnet-version: '10.0.x'
 
-    - name: 📦 Khôi phục toàn bộ thư viện NuGet diện rộng
-      run: dotnet restore MUnique.OpenMU.sln
+    - name: 📦 Khôi phục NuGet thẳng vào dự án Startup
+      run: dotnet restore src/Startup/MUnique.OpenMU.Startup.csproj
 
-    - name: 🚀 Biên dịch diện rộng và đóng gói cụm Server
+    - name: 🚀 Biên dịch và đóng gói Server từ dự án Startup
       run: |
-        dotnet publish MUnique.OpenMU.sln -c Release -o ./ServerOut/
+        dotnet publish src/Startup/MUnique.OpenMU.Startup.csproj -c Release -o ./ServerOut/
 
     - name: 📦 Đóng gói sản phẩm Server sạch lỗi gửi về điện thoại
       uses: actions/upload-artifact@v4

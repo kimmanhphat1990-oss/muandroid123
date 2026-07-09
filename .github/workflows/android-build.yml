@@ -13,7 +13,11 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '10.0.x'
+    - name: Recreate Clean Solution Structure
+      run: |
+        dotnet new sln -n MUnique.OpenMU
+        find . -name "*.csproj" ! -path "*/Backup/*" ! -path "*/bin/*" ! -path "*/obj/*" -exec dotnet sln MUnique.OpenMU.sln add "{}" +
     - name: Restore and Compile Server
       run: |
-        dotnet restore Startup/MUnique.OpenMU.Startup.csproj
-        dotnet publish Startup/MUnique.OpenMU.Startup.csproj -c Release -o ./ServerOut/ -p:BuildProjectReferences=true -p:GenerateAssemblyInfo=false -p:Deterministic=false
+        dotnet restore MUnique.OpenMU.sln
+        dotnet publish MUnique.OpenMU.sln -c Release -o ./ServerOut/ --no-restore -p:GenerateAssemblyInfo=false -p:Deterministic=false

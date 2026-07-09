@@ -20,5 +20,5 @@ jobs:
 
       - name: Restore and Publish
         run: |
-          dotnet restore
-          dotnet publish Startup/MUnique.OpenMU.Startup.csproj -c Release -o ./ServerOut/ -p:BuildProjectReferences=true
+          dotnet restore Startup/MUnique.OpenMU.Startup.csproj
+          dotnet publish Startup/MUnique.OpenMU.Startup.csproj -c Release -o ./ServerOut/ -p:BuildProvectReferences=true

@@ -23,7 +23,7 @@ jobs:
 
     - name: 🚀 Biên dịch và đóng gói Server từ dự án Startup
       run: |
-        dotnet clean && dotnet publish /p:GenerateAssemblyInfo=false Startup/MUnique.OpenMU.Startup.csproj -c Release -o ./ServerOut/
+        dotnet clean --exclude-property:GenerateAssemblyInfo=false && dotnet publish --no-restore -p:BuildProjectReferences=true /p:GenerateAssemblyInfo=false Startup/MUnique.OpenMU.Startup.csproj -c Release -o ./ServerOut/
 
     - name: 📦 Đóng gói sản phẩm Server sạch lỗi gửi về điện thoại
       uses: actions/upload-artifact@v4

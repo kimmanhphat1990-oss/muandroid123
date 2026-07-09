@@ -14,7 +14,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUnique.OpenMU.GameLogic", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUnique.OpenMU.Interfaces", "Interfaces\MUnique.OpenMU.Interfaces.csproj", "{CB8A2C80-8ECD-44D6-98B7-AB35891B66FD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUnique.OpenMU.Tests", "..\tests\MUnique.OpenMU.Tests\MUnique.OpenMU.Tests.csproj", "{B3737BB5-05AE-4AEE-8CE7-161B78B9F985}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUnique.OpenMU.ChatServer", "ChatServer\MUnique.OpenMU.ChatServer.csproj", "{DFCE247F-6E84-4791-A8F3-84AF4C371A2E}"
 EndProject
@@ -28,9 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUnique.OpenMU.FriendServer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUnique.OpenMU.Network", "Network\MUnique.OpenMU.Network.csproj", "{E3C36FF6-7205-4F9C-9242-A6B3441FF7F7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUnique.OpenMU.Network.Tests", "..\tests\MUnique.OpenMU.Network.Tests\MUnique.OpenMU.Network.Tests.csproj", "{8675AE62-9B7C-410C-A956-148904035F67}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUnique.OpenMU.Network.Packets.Tests", "..\tests\MUnique.OpenMU.Network.Packets.Tests\MUnique.OpenMU.Network.Packets.Tests.csproj", "{F8B3A4E7-1D2C-4E5F-B6A9-3C8D9E0F1A2B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUnique.OpenMU.Persistence", "Persistence\MUnique.OpenMU.Persistence.csproj", "{6E809FA9-888C-474F-8A84-70EECBC7E42D}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -64,7 +61,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUnique.OpenMU.Persistence.EntityFramework", "Persistence\EntityFramework\MUnique.OpenMU.Persistence.EntityFramework.csproj", "{B54420E7-17E7-43B5-84D9-7320133289B3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUnique.OpenMU.Persistence.Initialization.Tests", "..\tests\MUnique.OpenMU.Persistence.Initialization.Tests\MUnique.OpenMU.Persistence.Initialization.Tests.csproj", "{7E700210-36D7-4E8D-86D8-F8C12D36B0C9}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A044DA9E-CB5C-4087-B67A-02E1049920C1} = {A044DA9E-CB5C-4087-B67A-02E1049920C1}
 	EndProjectSection
@@ -75,11 +71,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUnique.OpenMU.ClientLaunch
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUnique.OpenMU.Pathfinding", "Pathfinding\MUnique.OpenMU.Pathfinding.csproj", "{44CD0416-61D6-4848-8864-5DE7B971604A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUnique.OpenMU.Pathfinding.Tests", "..\tests\MUnique.OpenMU.Pathfinding.Tests\MUnique.OpenMU.Pathfinding.Tests.csproj", "{66A6E404-2601-4354-A51A-C8F1EEBC8079}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUnique.OpenMU.AttributeSystem.Tests", "..\tests\MUnique.OpenMU.AttributeSystem.Tests\MUnique.OpenMU.AttributeSystem.Tests.csproj", "{6B8AC12A-9C67-40BC-B62A-B74BD895A4C0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUnique.OpenMU.ChatServer.Tests", "..\tests\MUnique.OpenMU.ChatServer.Tests\MUnique.OpenMU.ChatServer.Tests.csproj", "{DAA084C5-3A0C-4A69-A30B-B13A52901316}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUnique.OpenMU.ChatServer.ExDbConnector", "ChatServer\ExDbConnector\MUnique.OpenMU.ChatServer.ExDbConnector.csproj", "{B717F976-1A50-4112-A61A-F0E17E1A70D3}"
 EndProject
@@ -95,7 +88,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUnique.OpenMU.Network.Benc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUnique.OpenMU.PlugIns", "PlugIns\MUnique.OpenMU.PlugIns.csproj", "{5AB17B80-021D-4898-9750-0C26B2AF1A39}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUnique.OpenMU.PlugIns.Tests", "..\tests\MUnique.OpenMU.PlugIns.Tests\MUnique.OpenMU.PlugIns.Tests.csproj", "{89669CA5-E5C8-4854-B318-3903459236A2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence", "{1F7FA853-AEBA-40DB-A9CF-011DA54EE9FE}"
 EndProject
@@ -168,7 +160,6 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose-all-in-one-t
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MUnique.OpenMU.Web.Shared", "Web\Shared\MUnique.OpenMU.Web.Shared.csproj", "{1E5B9402-7F94-1B10-15B7-901A5DB39D2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MUnique.OpenMU.Web.Tests", "..\tests\MUnique.OpenMU.Web.Tests\MUnique.OpenMU.Web.Tests.csproj", "{10ECBF9E-7245-46C5-BE16-F5EE8661C9A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

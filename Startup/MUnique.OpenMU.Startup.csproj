@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <WarningsAsErrors>nullable;CS4014;VSTHRD110;VSTHRD103</WarningsAsErrors>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <!-- Các cấu hình khác đã được lược bỏ để ngắn gọn -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Serilog" />
+    <PackageReference Include="Serilog.Extensions.Hosting" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
+    <!-- Thêm các package cần thiết khác ở đây -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Web\AdminPanel\MUnique.OpenMU.AdminPanel.csproj" />
+    <ProjectReference Include="..\ChatServer\MUnique.OpenMU.ChatServer.csproj" />
+    <ProjectReference Include="..\GameServer\MUnique.OpenMU.GameServer.csproj" />
+    <!-- Tham chiếu các Project cần thiết khác -->
+  </ItemGroup>
+
+</Project>

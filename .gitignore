@@ -1,0 +1,9 @@
+bin/
+obj/
+tmp_build/
+*.cache
+.idea/
+.vs/
+tmp/
+tests/
+storage/

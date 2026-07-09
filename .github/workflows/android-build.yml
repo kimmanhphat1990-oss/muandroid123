@@ -1,25 +1,31 @@
-name: build-server-and-ape
+name: Android Server Build Workflow
 
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Step 1: Checkout Source Code
+      uses: actions/checkout@v4
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+    - name: Step 2: Setup .NET Environment
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
 
-        with:
-          dotnet-version: '10.0.x'
+    - name: Step 3: Recreate Clean Solution and Restore
+      run: |
+        dotnet new sln -n MUnique.OpenMU
+        dotnet sln MUnique.OpenMU.sln add **/*.csproj
+        dotnet restore MUnique.OpenMU.sln
 
-      - name: Restore All Projects
-        run: dotnet restore Startup/MUnique.OpenMU.Startup.csproj
-
-      - name: Build and Publish Server
-        run: dotnet publish Startup/MUnique.OpenMU.Startup.csproj -c Release -o ./ServerOut/ -p:BuildProjectReferences=true /p:GenerateAssemblyInfo=false
+    - name: Step 4: Compile and Publish Server
+      run: |
+        dotnet publish MUnique.OpenMU.sln -c Release -o ./ServerOut/ --no-restore -p:GenerateAssemblyInfo=false -p:Deterministic=false

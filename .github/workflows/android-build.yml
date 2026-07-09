@@ -13,10 +13,20 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '10.0.x'
-    - name: Recreate Clean Solution Structure
+    - name: Recreate Hardcoded Solution
       run: |
         dotnet new sln -n MUnique.OpenMU
-        find . -name "*.csproj" ! -path "*/Backup/*" ! -path "*/bin/*" ! -path "*/obj/*" -exec dotnet sln MUnique.OpenMU.sln add "{}" +
+        
+        # Nạp đích danh từng dự án con cốt lõi dựa trên danh sách Namespace bị thiếu
+        dotnet sln MUnique.OpenMU.sln add Startup/MUnique.OpenMU.Startup.csproj || true
+        dotnet sln MUnique.OpenMU.sln add ConnectServer/MUnique.OpenMU.ConnectServer.csproj || true
+        dotnet sln MUnique.OpenMU.sln add LoginServer/MUnique.OpenMU.LoginServer.csproj || true
+        dotnet sln MUnique.OpenMU.sln add GuildServer/MUnique.OpenMU.GuildServer.csproj || true
+        dotnet sln MUnique.OpenMU.sln add FriendServer/MUnique.OpenMU.FriendServer.csproj || true
+        dotnet sln MUnique.OpenMU.sln add ChatServer/MUnique.OpenMU.ChatServer.csproj || true
+        dotnet sln MUnique.OpenMU.sln add Web/MUnique.OpenMU.Web.csproj || true
+        dotnet sln MUnique.OpenMU.sln add Persistence/MUnique.OpenMU.Persistence.csproj || true
+        
     - name: Restore and Compile Server
       run: |
         dotnet restore MUnique.OpenMU.sln

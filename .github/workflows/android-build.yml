@@ -32,17 +32,5 @@ jobs:
 
     - name: Restore and Compile Server
       run: |
-        # 1. Khôi phục gói NuGet và ép hệ thống không được dừng lại dù có lỗi xung đột phiên bản
         dotnet restore ServerBuild.sln -p:NuGetAudit=false -p:AuditLevel=none || true
-        
-        # 2. Loại bỏ --no-restore để trình publish tự động phân giải cấu trúc và nạp gói trực tiếp khi biên dịch
-        dotnet publish ServerBuild.sln \
-          -c Release \
-          -o ./ServerOut/ \
-          -p:GenerateAssemblyInfo=false \
-          -p:Deterministic=false \
-          -p:TreatWarningsAsErrors=false \
-          -p:MSBuildWarningsAsErrors=false \
-          -p:NuGetAudit=false \
-          -p:AuditLevel=none \
-          --no-warn:NU1901,NU1902,NU1903,NU1904
+        dotnet publish ServerBuild.sln -c Release -o ./ServerOut/ -p:GenerateAssemblyInfo=false -p:Deterministic=false -p:TreatWarningsAsErrors=false -p:MSBuildWarningsAsErrors=false -p:NuGetAudit=false -p:AuditLevel=none -p:NoWarn="NU1901;NU1902;NU1903;NU1904"

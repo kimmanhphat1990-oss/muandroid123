@@ -15,17 +15,17 @@ jobs:
         dotnet-version: '10.0.x'
     - name: Recreate Brand New Solution
       run: |
-        # 1. Xóa sạch mọi tệp tin giải pháp cũ lỗi
         rm -rf *.sln *.slnx
-        
-        # 2. Tạo một file thô tại gốc để khóa vị trí không cho .NET tự đẻ thư mục con
         echo 'Microsoft Visual Studio Solution File, Format Version 12.00' > ServerBuild.sln
-        
-        # 3. Quét động và nạp chính xác các phân hệ vào tệp giải pháp đã khóa vị trí tại gốc
         find . -name "*.csproj" ! -path "*/Backup/*" ! -path "*/bin/*" ! -path "*/obj/*" ! -path "*/ChatServer/*" | while read -r project; do
-          echo "Mapping project: $project"
           dotnet sln ServerBuild.sln add "$project"
         done
+        
+    - name: Inject Project References to Startup
+      run: |
+        # Tự động chèn ép liên kết tất cả các phân hệ phụ thuộc vào thẳng tệp cấu hình Startup.csproj
+        sed -i '/<\/Project>/i \  <ItemGroup>\n    <ProjectReference Include="..\\ConnectServer\\MUnique.OpenMU.ConnectServer.csproj" />\n    <ProjectReference Include="..\\LoginServer\\MUnique.OpenMU.LoginServer.csproj" />\n    <ProjectReference Include="..\\GuildServer\\MUnique.OpenMU.GuildServer.csproj" />\n    <ProjectReference Include="..\\FriendServer\\MUnique.OpenMU.FriendServer.csproj" />\n    <ProjectReference Include="..\\GameServer\\MUnique.OpenMU.GameServer.csproj" />\n    <ProjectReference Include="..\\Persistence\\EntityFramework\\MUnique.OpenMU.Persistence.EntityFramework.csproj" />\n    <ProjectReference Include="..\\Web\\MUnique.OpenMU.Web.csproj" />\n  </ItemGroup>' Startup/MUnique.OpenMU.Startup.csproj
+
     - name: Restore and Compile Server
       run: |
         dotnet restore ServerBuild.sln

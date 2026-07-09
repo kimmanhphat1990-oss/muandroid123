@@ -17,15 +17,21 @@ jobs:
       run: |
         dotnet new sln -n MUnique.OpenMU
         
-        # Nạp đích danh từng dự án con cốt lõi dựa trên danh sách Namespace bị thiếu
-        dotnet sln MUnique.OpenMU.sln add Startup/MUnique.OpenMU.Startup.csproj || true
-        dotnet sln MUnique.OpenMU.sln add ConnectServer/MUnique.OpenMU.ConnectServer.csproj || true
-        dotnet sln MUnique.OpenMU.sln add LoginServer/MUnique.OpenMU.LoginServer.csproj || true
-        dotnet sln MUnique.OpenMU.sln add GuildServer/MUnique.OpenMU.GuildServer.csproj || true
-        dotnet sln MUnique.OpenMU.sln add FriendServer/MUnique.OpenMU.FriendServer.csproj || true
-        dotnet sln MUnique.OpenMU.sln add ChatServer/MUnique.OpenMU.ChatServer.csproj || true
-        dotnet sln MUnique.OpenMU.sln add Web/MUnique.OpenMU.Web.csproj || true
-        dotnet sln MUnique.OpenMU.sln add Persistence/MUnique.OpenMU.Persistence.csproj || true
+        # Nạp chính xác danh sách các dự án cốt lõi (Đã loại bỏ hoàn toàn ChatServer)
+        dotnet sln MUnique.OpenMU.sln add Startup/MUnique.OpenMU.Startup.csproj
+        dotnet sln MUnique.OpenMU.sln add ConnectServer/MUnique.OpenMU.ConnectServer.csproj
+        dotnet sln MUnique.OpenMU.sln add LoginServer/MUnique.OpenMU.LoginServer.csproj
+        dotnet sln MUnique.OpenMU.sln add GuildServer/MUnique.OpenMU.GuildServer.csproj
+        dotnet sln MUnique.OpenMU.sln add FriendServer/MUnique.OpenMU.FriendServer.csproj
+        dotnet sln MUnique.OpenMU.sln add GameServer/MUnique.OpenMU.GameServer.csproj
+        
+        # Nạp các phân hệ dữ liệu, mạng và logic phụ thuộc
+        dotnet sln MUnique.OpenMU.sln add Persistence/EntityFramework/MUnique.OpenMU.Persistence.EntityFramework.csproj
+        dotnet sln MUnique.OpenMU.sln add Persistence/MUnique.OpenMU.Persistence.csproj
+        dotnet sln MUnique.OpenMU.sln add DataModel/MUnique.OpenMU.DataModel.csproj
+        dotnet sln MUnique.OpenMU.sln add Network/MUnique.OpenMU.Network.csproj
+        dotnet sln MUnique.OpenMU.sln add GameLogic/MUnique.OpenMU.GameLogic.csproj
+        dotnet sln MUnique.OpenMU.sln add Interfaces/MUnique.OpenMU.Interfaces.csproj
         
     - name: Restore and Compile Server
       run: |

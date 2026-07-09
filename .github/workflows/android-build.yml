@@ -15,15 +15,18 @@ jobs:
         dotnet-version: '10.0.x'
     - name: Recreate Brand New Solution
       run: |
-        # 1. Tạo tệp giải pháp ngay tại thư mục gốc (không dùng tham số -n để tránh bị tự tạo thư mục con)
-        dotnet new sln --force
+        # 1. Xóa bỏ triệt để mọi file giải pháp cũ hoặc file lỗi trong thư mục
+        rm -f *.sln *.slnx
         
-        # 2. Quét động và nạp chính xác các phân hệ (Sử dụng ký tự đại diện *.sln để tự nhận diện tên file)
+        # 2. Tạo một file giải pháp với tên riêng biệt hoàn toàn mới tại gốc
+        dotnet new sln -n ServerBuild --force
+        
+        # 3. Quét động và nạp chính xác các phân hệ vào tệp giải pháp mới tạo
         find . -name "*.csproj" ! -path "*/Backup/*" ! -path "*/bin/*" ! -path "*/obj/*" ! -path "*/ChatServer/*" | while read -r project; do
           echo "Mapping project: $project"
-          dotnet sln *.sln add "$project"
+          dotnet sln ServerBuild.sln add "$project"
         done
     - name: Restore and Compile Server
       run: |
-        dotnet restore *.sln
-        dotnet publish *.sln -c Release -o ./ServerOut/ --no-restore -p:GenerateAssemblyInfo=false -p:Deterministic=false
+        dotnet restore ServerBuild.sln
+        dotnet publish ServerBuild.sln -c Release -o ./ServerOut/ --no-restore -p:GenerateAssemblyInfo=false -p:Deterministic=false

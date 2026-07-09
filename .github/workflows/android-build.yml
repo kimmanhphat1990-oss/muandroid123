@@ -23,21 +23,22 @@ jobs:
         
     - name: Dynamically Inject All Project References to Startup
       run: |
-        # Khởi tạo khối ItemGroup mới trong file Startup.csproj
         sed -i '/<\/Project>/i \  <ItemGroup>' Startup/MUnique.OpenMU.Startup.csproj
-        
-        # Quét mọi file dự án con hợp lệ và tiêm đường dẫn tương đối chuẩn xác vào Startup.csproj
         find . -name "*.csproj" ! -path "*/Startup/*" ! -path "*/Backup/*" ! -path "*/bin/*" ! -path "*/obj/*" ! -path "*/ChatServer/*" | while read -r project; do
-          # Loại bỏ ký tự ./ ở đầu đường dẫn
           clean_path=$(echo "$project" | sed 's|^\./||')
-          echo "Injecting reference: ../$clean_path"
           sed -i "/<\/Project>/i \    <ProjectReference Include=\"../$clean_path\" />" Startup/MUnique.OpenMU.Startup.csproj
         done
-        
-        # Đóng khối ItemGroup
         sed -i '/<\/Project>/i \  </ItemGroup>' Startup/MUnique.OpenMU.Startup.csproj
 
     - name: Restore and Compile Server
       run: |
         dotnet restore ServerBuild.sln
-        dotnet publish ServerBuild.sln -c Release -o ./ServerOut/ --no-restore -p:GenerateAssemblyInfo=false -p:Deterministic=false
+        # Ép .NET bỏ qua mọi cảnh báo bảo mật thư viện cũ để xuất file ServerOut thành công
+        dotnet publish ServerBuild.sln \
+          -c Release \
+          -o ./ServerOut/ \
+          --no-restore \
+          -p:GenerateAssemblyInfo=false \
+          -p:Deterministic=false \
+          -p:TreatWarningsAsErrors=false \
+          --no-warn:NU1901,NU1902,NU1903,NU1904

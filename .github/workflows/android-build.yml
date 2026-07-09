@@ -13,22 +13,7 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '10.0.x'
-    - name: Build and Gather All Modules
+    - name: Compile and Publish Complete Server
       run: |
-        # Biên dịch toàn bộ các phân hệ và ném chung vào một thư mục output đồng nhất
-        dotnet build ConnectServer/MUnique.OpenMU.ConnectServer.csproj -c Release -o ./publish_cache/ -p:GenerateAssemblyInfo=false
-        dotnet build LoginServer/MUnique.OpenMU.LoginServer.csproj -c Release -o ./publish_cache/ -p:GenerateAssemblyInfo=false
-        dotnet build GuildServer/MUnique.OpenMU.GuildServer.csproj -c Release -o ./publish_cache/ -p:GenerateAssemblyInfo=false
-        dotnet build FriendServer/MUnique.OpenMU.FriendServer.csproj -c Release -o ./publish_cache/ -p:GenerateAssemblyInfo=false
-        dotnet build GameServer/MUnique.OpenMU.GameServer.csproj -c Release -o ./publish_cache/ -p:GenerateAssemblyInfo=false
-        dotnet build Persistence/EntityFramework/MUnique.OpenMU.Persistence.EntityFramework.csproj -c Release -o ./publish_cache/ -p:GenerateAssemblyInfo=false
-        dotnet build Web/MUnique.OpenMU.Web.csproj -c Release -o ./publish_cache/ -p:GenerateAssemblyInfo=false
-    - name: Compile Main Server with Modules Linked
-      run: |
-        # Ép dự án chính sử dụng chung thư mục đầu ra để tự động nhận diện toàn bộ file .dll phân hệ
-        dotnet publish Startup/MUnique.OpenMU.Startup.csproj \
-          -c Release \
-          -o ./ServerOut/ \
-          -p:AdditionalResolvers=./publish_cache/ \
-          -p:GenerateAssemblyInfo=false \
-          -p:Deterministic=false
+        dotnet restore MUnique.OpenMU.sln
+        dotnet publish MUnique.OpenMU.sln -c Release -o ./ServerOut/ --no-restore -p:GenerateAssemblyInfo=false -p:Deterministic=false

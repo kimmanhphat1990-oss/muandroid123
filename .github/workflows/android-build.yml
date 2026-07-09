@@ -18,7 +18,8 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
-      - name: Restore and Publish
-        run: |
-          dotnet restore Startup/MUnique.OpenMU.Startup.csproj
-          dotnet publish Startup/MUnique.OpenMU.Startup.csproj -c Release -o ./ServerOut/ -p:BuildProvectReferences=true
+      - name: Tải và Khôi phục toàn bộ d�o án con
+        run: find . -name "*.csproj" -exec dotnet restore {} \;
+
+      - name: Biên dịch và Đóng go#i Server
+        run: dotnet publish Startup/MUnique.OpenMU.Startup.csproj -c Release -o ./ServerOut/ -p:BuildProjectReferences=true /p:GenerateAssemblyInfo=false

@@ -21,3 +21,4 @@ jobs:
       run: |
         dotnet restore MUnique.OpenMU.sln
         dotnet publish MUnique.OpenMU.sln -c Release -o ./ServerOut/ --no-restore -p:GenerateAssemblyInfo=false -p:Deterministic=false
+# Re-trigger clean build after bin/obj cleanup

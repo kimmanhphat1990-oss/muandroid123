@@ -13,7 +13,8 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '10.0.x'
-    - name: Restore Project Packages
-      run: dotnet restore Startup/MUnique.OpenMU.Startup.csproj --disable-parallel
-    - name: Compile and Publish Server
-      run: dotnet publish Startup/MUnique.OpenMU.Startup.csproj -c Release -o ./ServerOut/ -p:BuildProjectReferences=true -p:GenerateAssemblyInfo=false -p:Deterministic=false
+    - name: Recreate Solution and Compile
+      run: |
+        dotnet new sln
+        dotnet sln $(ls *.sln | head -n 1) add $(find . -name "*.csproj")
+        dotnet publish $(ls *.sln | head -n 1) -c Release -o ./ServerOut/ -p:GenerateAssemblyInfo=false -p:Deterministic=false

@@ -13,22 +13,22 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '10.0.x'
-    - name: Pre-compile All Sub-Projects
+    - name: Build and Gather All Modules
       run: |
-        # Ép .NET biên dịch riêng lẻ từng phân hệ để sinh cache thư viện
-        dotnet build ConnectServer/MUnique.OpenMU.ConnectServer.csproj -c Release -p:GenerateAssemblyInfo=false
-        dotnet build LoginServer/MUnique.OpenMU.LoginServer.csproj -c Release -p:GenerateAssemblyInfo=false
-        dotnet build GuildServer/MUnique.OpenMU.GuildServer.csproj -c Release -p:GenerateAssemblyInfo=false
-        dotnet build FriendServer/MUnique.OpenMU.FriendServer.csproj -c Release -p:GenerateAssemblyInfo=false
-        dotnet build GameServer/MUnique.OpenMU.GameServer.csproj -c Release -p:GenerateAssemblyInfo=false
-        dotnet build Persistence/EntityFramework/MUnique.OpenMU.Persistence.EntityFramework.csproj -c Release -p:GenerateAssemblyInfo=false
-        
-    - name: Compile and Publish Main Server
+        # Biên dịch toàn bộ các phân hệ và ném chung vào một thư mục output đồng nhất
+        dotnet build ConnectServer/MUnique.OpenMU.ConnectServer.csproj -c Release -o ./publish_cache/ -p:GenerateAssemblyInfo=false
+        dotnet build LoginServer/MUnique.OpenMU.LoginServer.csproj -c Release -o ./publish_cache/ -p:GenerateAssemblyInfo=false
+        dotnet build GuildServer/MUnique.OpenMU.GuildServer.csproj -c Release -o ./publish_cache/ -p:GenerateAssemblyInfo=false
+        dotnet build FriendServer/MUnique.OpenMU.FriendServer.csproj -c Release -o ./publish_cache/ -p:GenerateAssemblyInfo=false
+        dotnet build GameServer/MUnique.OpenMU.GameServer.csproj -c Release -o ./publish_cache/ -p:GenerateAssemblyInfo=false
+        dotnet build Persistence/EntityFramework/MUnique.OpenMU.Persistence.EntityFramework.csproj -c Release -o ./publish_cache/ -p:GenerateAssemblyInfo=false
+        dotnet build Web/MUnique.OpenMU.Web.csproj -c Release -o ./publish_cache/ -p:GenerateAssemblyInfo=false
+    - name: Compile Main Server with Modules Linked
       run: |
-        # Biên dịch dự án chính kèm theo lệnh ép buộc nạp tất cả các tham chiếu chéo
+        # Ép dự án chính sử dụng chung thư mục đầu ra để tự động nhận diện toàn bộ file .dll phân hệ
         dotnet publish Startup/MUnique.OpenMU.Startup.csproj \
           -c Release \
           -o ./ServerOut/ \
-          -p:BuildProjectReferences=true \
+          -p:AdditionalResolvers=./publish_cache/ \
           -p:GenerateAssemblyInfo=false \
           -p:Deterministic=false

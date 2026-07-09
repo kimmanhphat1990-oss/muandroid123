@@ -28,4 +28,9 @@ jobs:
 
     - name: Step 4: Compile and Publish Server
       run: |
-        dotnet publish MUnique.OpenMU.sln -c Release -o ./ServerOut/ --no-restore -p:GenerateAssemblyInfo=false -p:Deterministic=false
+        dotnet publish MUnique.OpenMU.sln \
+          -c Release \
+          -o ./ServerOut/ \
+          --no-restore \
+          -p:GenerateAssemblyInfo=false \
+          -p:Deterministic=false

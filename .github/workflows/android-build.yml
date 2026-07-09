@@ -19,11 +19,11 @@ jobs:
         dotnet-version: '10.0.x'
 
     - name: 📦 Khôi phục NuGet thẳng vào dự án Startup
-      run: dotnet restore src/Startup/MUnique.OpenMU.Startup.csproj
+      run: dotnet restore Startup/MUnique.OpenMU.Startup.csproj
 
     - name: 🚀 Biên dịch và đóng gói Server từ dự án Startup
       run: |
-        dotnet publish src/Startup/MUnique.OpenMU.Startup.csproj -c Release -o ./ServerOut/
+        dotnet publish Startup/MUnique.OpenMU.Startup.csproj -c Release -o ./ServerOut/
 
     - name: 📦 Đóng gói sản phẩm Server sạch lỗi gửi về điện thoại
       uses: actions/upload-artifact@v4

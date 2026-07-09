@@ -21,10 +21,21 @@ jobs:
           dotnet sln ServerBuild.sln add "$project"
         done
         
-    - name: Inject Project References to Startup
+    - name: Dynamically Inject All Project References to Startup
       run: |
-        # Tự động chèn ép liên kết tất cả các phân hệ phụ thuộc vào thẳng tệp cấu hình Startup.csproj
-        sed -i '/<\/Project>/i \  <ItemGroup>\n    <ProjectReference Include="..\\ConnectServer\\MUnique.OpenMU.ConnectServer.csproj" />\n    <ProjectReference Include="..\\LoginServer\\MUnique.OpenMU.LoginServer.csproj" />\n    <ProjectReference Include="..\\GuildServer\\MUnique.OpenMU.GuildServer.csproj" />\n    <ProjectReference Include="..\\FriendServer\\MUnique.OpenMU.FriendServer.csproj" />\n    <ProjectReference Include="..\\GameServer\\MUnique.OpenMU.GameServer.csproj" />\n    <ProjectReference Include="..\\Persistence\\EntityFramework\\MUnique.OpenMU.Persistence.EntityFramework.csproj" />\n    <ProjectReference Include="..\\Web\\MUnique.OpenMU.Web.csproj" />\n  </ItemGroup>' Startup/MUnique.OpenMU.Startup.csproj
+        # Khởi tạo khối ItemGroup mới trong file Startup.csproj
+        sed -i '/<\/Project>/i \  <ItemGroup>' Startup/MUnique.OpenMU.Startup.csproj
+        
+        # Quét mọi file dự án con hợp lệ và tiêm đường dẫn tương đối chuẩn xác vào Startup.csproj
+        find . -name "*.csproj" ! -path "*/Startup/*" ! -path "*/Backup/*" ! -path "*/bin/*" ! -path "*/obj/*" ! -path "*/ChatServer/*" | while read -r project; do
+          # Loại bỏ ký tự ./ ở đầu đường dẫn
+          clean_path=$(echo "$project" | sed 's|^\./||')
+          echo "Injecting reference: ../$clean_path"
+          sed -i "/<\/Project>/i \    <ProjectReference Include=\"../$clean_path\" />" Startup/MUnique.OpenMU.Startup.csproj
+        done
+        
+        # Đóng khối ItemGroup
+        sed -i '/<\/Project>/i \  </ItemGroup>' Startup/MUnique.OpenMU.Startup.csproj
 
     - name: Restore and Compile Server
       run: |

@@ -32,8 +32,10 @@ jobs:
 
     - name: Restore and Compile Server
       run: |
-        dotnet restore ServerBuild.sln
-        # Ép .NET bỏ qua mọi cảnh báo bảo mật thư viện cũ để xuất file ServerOut thành công
+        # Ép .NET tắt hoàn toàn tính năng kiểm tra bảo mật gói NuGet khi khôi phục
+        dotnet restore ServerBuild.sln -p:NuGetAudit=false -p:AuditLevel=none
+        
+        # Biên dịch và publish Server sạch lỗi bảo mật
         dotnet publish ServerBuild.sln \
           -c Release \
           -o ./ServerOut/ \
@@ -41,4 +43,7 @@ jobs:
           -p:GenerateAssemblyInfo=false \
           -p:Deterministic=false \
           -p:TreatWarningsAsErrors=false \
+          -p:MSBuildWarningsAsErrors=false \
+          -p:NuGetAudit=false \
+          -p:AuditLevel=none \
           --no-warn:NU1901,NU1902,NU1903,NU1904

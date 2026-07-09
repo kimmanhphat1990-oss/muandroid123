@@ -13,17 +13,17 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '10.0.x'
-    - name: Recreate Clean Solution and Map Projects
+    - name: Recreate Brand New Solution
       run: |
-        # 1. Tạo tệp giải pháp mới với định dạng chuẩn
-        dotnet new sln -n MUnique.OpenMU --force
+        # 1. Tạo tệp giải pháp hoàn toàn mới để tránh xung đột file cũ hỏng
+        dotnet new sln -n OpenMU.AndroidServer
         
-        # 2. Quét động và nạp chính xác các phân hệ hợp lệ bằng vòng lặp chống khoảng trắng
+        # 2. Quét động và nạp chính xác các phân hệ (Loại bỏ hoàn toàn ChatServer và Backup)
         find . -name "*.csproj" ! -path "*/Backup/*" ! -path "*/bin/*" ! -path "*/obj/*" ! -path "*/ChatServer/*" | while read -r project; do
           echo "Mapping project: $project"
-          dotnet sln MUnique.OpenMU.sln add "$project"
+          dotnet sln OpenMU.AndroidServer.sln add "$project"
         done
     - name: Restore and Compile Server
       run: |
-        dotnet restore MUnique.OpenMU.sln
-        dotnet publish MUnique.OpenMU.sln -c Release -o ./ServerOut/ --no-restore -p:GenerateAssemblyInfo=false -p:Deterministic=false
+        dotnet restore OpenMU.AndroidServer.sln
+        dotnet publish OpenMU.AndroidServer.sln -c Release -o ./ServerOut/ --no-restore -p:GenerateAssemblyInfo=false -p:Deterministic=false

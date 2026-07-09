@@ -15,9 +15,9 @@ jobs:
         dotnet-version: '10.0.x'
     - name: Recreate Clean Solution and Restore
       run: |
-        dotnet new sln -n MUnique.OpenMU
-        find . -name "*.csproj" -exec dotnet sln MUnique.OpenMU.sln add {} +
-        dotnet restore MUnique.OpenMU.sln
+        dotnet new sln
+        find . -name "*.csproj" -exec dotnet sln *.sln add {} +
+        dotnet restore *.sln
     - name: Compile and Publish Server
       run: |
-        dotnet publish MUnique.OpenMU.sln -c Release -o ./ServerOut/ --no-restore -p:GenerateAssemblyInfo=false -p:Deterministic=false
+        dotnet publish *.sln -c Release -o ./ServerOut/ --no-restore -p:GenerateAssemblyInfo=false -p:Deterministic=false

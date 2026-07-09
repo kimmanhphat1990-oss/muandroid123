@@ -15,14 +15,13 @@ jobs:
         dotnet-version: '10.0.x'
     - name: Recreate Brand New Solution
       run: |
-        # 1. Xóa bỏ triệt để mọi file giải pháp cũ hỏng
-        rm -f *.sln *.slnx
+        # 1. Xóa bỏ triệt để mọi file giải pháp lỗi cũ
+        rm -rf *.sln *.slnx muandroid123/ ServerBuild/
         
-        # 2. Tạo tệp giải pháp mặc định tại gốc và ép đổi tên ngay tại chỗ
-        dotnet new sln --force
-        mv *.sln ServerBuild.sln
+        # 2. Ép buộc tạo file sln trực tiếp tại thư mục gốc bằng tham số đầu ra -o
+        dotnet new sln -n ServerBuild -o . --force
         
-        # 3. Quét động và nạp chính xác các phân hệ vào tệp giải pháp tại gốc
+        # 3. Quét động và nạp chính xác các phân hệ vào tệp giải pháp nằm tại gốc
         find . -name "*.csproj" ! -path "*/Backup/*" ! -path "*/bin/*" ! -path "*/obj/*" ! -path "*/ChatServer/*" | while read -r project; do
           echo "Mapping project: $project"
           dotnet sln ServerBuild.sln add "$project"

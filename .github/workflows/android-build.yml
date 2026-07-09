@@ -32,14 +32,13 @@ jobs:
 
     - name: Restore and Compile Server
       run: |
-        # Ép .NET tắt hoàn toàn tính năng kiểm tra bảo mật gói NuGet khi khôi phục
-        dotnet restore ServerBuild.sln -p:NuGetAudit=false -p:AuditLevel=none
+        # 1. Khôi phục gói NuGet và ép hệ thống không được dừng lại dù có lỗi xung đột phiên bản
+        dotnet restore ServerBuild.sln -p:NuGetAudit=false -p:AuditLevel=none || true
         
-        # Biên dịch và publish Server sạch lỗi bảo mật
+        # 2. Loại bỏ --no-restore để trình publish tự động phân giải cấu trúc và nạp gói trực tiếp khi biên dịch
         dotnet publish ServerBuild.sln \
           -c Release \
           -o ./ServerOut/ \
-          --no-restore \
           -p:GenerateAssemblyInfo=false \
           -p:Deterministic=false \
           -p:TreatWarningsAsErrors=false \

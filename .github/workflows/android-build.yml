@@ -13,27 +13,22 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '10.0.x'
-    - name: Recreate Hardcoded Solution
+    - name: Pre-compile All Sub-Projects
       run: |
-        dotnet new sln -n MUnique.OpenMU
+        # Ép .NET biên dịch riêng lẻ từng phân hệ để sinh cache thư viện
+        dotnet build ConnectServer/MUnique.OpenMU.ConnectServer.csproj -c Release -p:GenerateAssemblyInfo=false
+        dotnet build LoginServer/MUnique.OpenMU.LoginServer.csproj -c Release -p:GenerateAssemblyInfo=false
+        dotnet build GuildServer/MUnique.OpenMU.GuildServer.csproj -c Release -p:GenerateAssemblyInfo=false
+        dotnet build FriendServer/MUnique.OpenMU.FriendServer.csproj -c Release -p:GenerateAssemblyInfo=false
+        dotnet build GameServer/MUnique.OpenMU.GameServer.csproj -c Release -p:GenerateAssemblyInfo=false
+        dotnet build Persistence/EntityFramework/MUnique.OpenMU.Persistence.EntityFramework.csproj -c Release -p:GenerateAssemblyInfo=false
         
-        # Nạp chính xác danh sách các dự án cốt lõi (Đã loại bỏ hoàn toàn ChatServer)
-        dotnet sln MUnique.OpenMU.sln add Startup/MUnique.OpenMU.Startup.csproj
-        dotnet sln MUnique.OpenMU.sln add ConnectServer/MUnique.OpenMU.ConnectServer.csproj
-        dotnet sln MUnique.OpenMU.sln add LoginServer/MUnique.OpenMU.LoginServer.csproj
-        dotnet sln MUnique.OpenMU.sln add GuildServer/MUnique.OpenMU.GuildServer.csproj
-        dotnet sln MUnique.OpenMU.sln add FriendServer/MUnique.OpenMU.FriendServer.csproj
-        dotnet sln MUnique.OpenMU.sln add GameServer/MUnique.OpenMU.GameServer.csproj
-        
-        # Nạp các phân hệ dữ liệu, mạng và logic phụ thuộc
-        dotnet sln MUnique.OpenMU.sln add Persistence/EntityFramework/MUnique.OpenMU.Persistence.EntityFramework.csproj
-        dotnet sln MUnique.OpenMU.sln add Persistence/MUnique.OpenMU.Persistence.csproj
-        dotnet sln MUnique.OpenMU.sln add DataModel/MUnique.OpenMU.DataModel.csproj
-        dotnet sln MUnique.OpenMU.sln add Network/MUnique.OpenMU.Network.csproj
-        dotnet sln MUnique.OpenMU.sln add GameLogic/MUnique.OpenMU.GameLogic.csproj
-        dotnet sln MUnique.OpenMU.sln add Interfaces/MUnique.OpenMU.Interfaces.csproj
-        
-    - name: Restore and Compile Server
+    - name: Compile and Publish Main Server
       run: |
-        dotnet restore MUnique.OpenMU.sln
-        dotnet publish MUnique.OpenMU.sln -c Release -o ./ServerOut/ --no-restore -p:GenerateAssemblyInfo=false -p:Deterministic=false
+        # Biên dịch dự án chính kèm theo lệnh ép buộc nạp tất cả các tham chiếu chéo
+        dotnet publish Startup/MUnique.OpenMU.Startup.csproj \
+          -c Release \
+          -o ./ServerOut/ \
+          -p:BuildProjectReferences=true \
+          -p:GenerateAssemblyInfo=false \
+          -p:Deterministic=false

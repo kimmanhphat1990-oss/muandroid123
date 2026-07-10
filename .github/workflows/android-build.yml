@@ -16,14 +16,33 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          # Nâng cấp lên Java 17 để khớp chính xác với yêu cầu của Android Gradle Plugin
           java-version: '17'
+
+      - name: Setup Android Toolchains
+        uses: android-actions/setup-android@v3
+
+      - name: Auto-generate Linux NDK Properties
+        run: |
+          # Tìm chính xác thư mục chứa dự án Android
+          cd android/ || cd */android/ || true
+          
+          # Tự động tạo hoặc ghi đè file local.properties với đường dẫn SDK và NDK chuẩn trên máy chủ Actions
+          echo "sdk.dir=$ANDROID_HOME" > local.properties
+          
+          # Dò tìm thư mục NDK mặc định của hệ thống máy chủ và ghi vào cấu hình
+          NDK_PATH=$(find /usr/local/lib/android/sdk/ndk/ -maxdepth 1 -type d | sort -V | tail -n 1)
+          if [ -n "$NDK_PATH" ]; then
+            echo "ndk.dir=$NDK_PATH" >> local.properties
+          fi
+          
+          echo "=== NỘI DUNG FILE LOCAL.PROPERTIES VỪA VÁ ==="
+          cat local.properties
 
       - name: Build Android APK via Local Wrapper
         run: |
           cd android/ || cd */android/ || true
           chmod +x gradlew || true
-          # Biên dịch trực tiếp, bỏ qua kiểm tra lỗi cảnh báo tương thích cũ để ép xuất file APK
+          # Thực hiện dọn dẹp bộ đệm lỗi cũ và tiến hành biên dịch dứt điểm
           ./gradlew clean assembleRelease -x test --continue --no-daemon
           
       - name: Upload Game APK

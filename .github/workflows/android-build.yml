@@ -21,24 +21,24 @@ jobs:
       - name: Setup Android Toolchains
         uses: android-actions/setup-android@v3
 
-      # Ép buộc máy chủ ảo cài đặt cố định phiên bản Gradle 8.5 để tương thích với game cũ
-      - name: Setup Legacy Gradle 8.5
+      # Nâng cấp và khóa cứng phiên bản Gradle lên đúng 8.13 để khớp với plugin Android của game
+      - name: Setup Target Gradle 8.13
         uses: gradle/actions/setup-gradle@v3
         with:
-          gradle-version: '8.5'
+          gradle-version: '8.13'
 
       - name: Patch Gradle and NDK Configurations
         run: |
           cd android/ || cd */android/ || true
           echo "sdk.dir=$ANDROID_HOME" > local.properties
           find . -name "build.gradle" -exec sed -i '/ndkVersion/d' {} +
-          echo "=== ĐÃ ĐỒNG BỘ HOÀN TOÀN FILE CẤU HÌNH ==="
+          echo "=== ĐÃ ĐỒNG BỘ HOÀN TOÀN FILE CẤU HÌNH VỚI GRADLE 8.13 ==="
 
       - name: Build Android APK via Target Gradle
         run: |
           cd android/ || cd */android/ || true
           chmod +x gradlew || true
-          # Sử dụng lệnh gọi gradle trực tiếp từ hệ thống thay vì dùng gradlew wrapper cũ lỗi
+          # Thực hiện dọn dẹp bộ đệm lỗi cũ và tiến hành biên dịch dứt điểm sang file APK
           gradle clean assembleRelease -x test --continue --no-daemon
           
       - name: Upload Game APK

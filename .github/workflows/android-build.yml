@@ -7,26 +7,28 @@ on:
 
 jobs:
   build-apk:
-    runs-on: ubuntu-latest
+    # Hạ cấp hệ điều hành máy chủ Actions từ ubuntu-latest xuống ubuntu-20.04 để lấy bộ công cụ NDK cũ
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout Source
         uses: actions/checkout@v4
 
-      - name: Setup Java JDK 17
+      - name: Setup Old Java JDK Environment
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          java-version: '17'
+          # Chuyển đổi từ Java 17 xuống Java 11 để khớp với cấu trúc Gradle đời cũ của game
+          java-version: '11'
 
-      - name: Setup Android Toolchains
+      - name: Setup Legacy Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Build Android APK
+      - name: Build Legacy Android APK
         run: |
           cd android/ || cd */android/ || true
           chmod +x gradlew || true
-          # Ép Gradle bỏ qua kiểm tra lỗi cảnh báo tương thích cũ để xuất xưởng APK thành công
-          ./gradlew assembleRelease -x test --continue --no-daemon
+          # Thực hiện lệnh dọn dẹp hệ thống cũ và tiến hành biên dịch ra file APK cài đặt
+          ./gradlew clean assembleRelease --no-daemon
 
       - name: Upload Game APK
         uses: actions/upload-artifact@v4

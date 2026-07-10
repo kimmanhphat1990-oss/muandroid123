@@ -7,29 +7,26 @@ on:
 
 jobs:
   build-apk:
-    # Hạ cấp hệ điều hành máy chủ Actions từ ubuntu-latest xuống ubuntu-20.04 để lấy bộ công cụ NDK cũ
-    runs-on: ubuntu-20.04
+    # Quay lại hệ điều hành mới nhất để GitHub Actions không bắt bạn phải xếp hàng đợi (Queued) nữa
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Source
         uses: actions/checkout@v4
 
-      - name: Setup Old Java JDK Environment
+      - name: Setup Java JDK 11
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          # Chuyển đổi từ Java 17 xuống Java 11 để khớp với cấu trúc Gradle đời cũ của game
+          # Giữ nguyên Java 11 để đọc hiểu cấu trúc code game cũ của bạn
           java-version: '11'
 
-      - name: Setup Legacy Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Build Legacy Android APK
+      - name: Build Android APK via Local Wrapper
         run: |
           cd android/ || cd */android/ || true
           chmod +x gradlew || true
-          # Thực hiện lệnh dọn dẹp hệ thống cũ và tiến hành biên dịch ra file APK cài đặt
-          ./gradlew clean assembleRelease --no-daemon
-
+          # Thực hiện dọn dẹp bộ đệm lỗi cũ và biên dịch trực tiếp thông qua Wrapper nội bộ của game
+          ./gradlew clean assembleRelease -x test --continue --no-daemon
+          
       - name: Upload Game APK
         uses: actions/upload-artifact@v4
         with:

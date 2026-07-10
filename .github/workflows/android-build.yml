@@ -21,28 +21,24 @@ jobs:
       - name: Setup Android Toolchains
         uses: android-actions/setup-android@v3
 
-      - name: Auto-generate Linux NDK Properties
+      - name: Patch Gradle and NDK Configurations
         run: |
-          # Tìm chính xác thư mục chứa dự án Android
+          # 1. Tìm chính xác thư mục chứa dự án Android
           cd android/ || cd */android/ || true
           
-          # Tự động tạo hoặc ghi đè file local.properties với đường dẫn SDK và NDK chuẩn trên máy chủ Actions
+          # 2. Khóa vị trí file local.properties bằng đường dẫn SDK chuẩn
           echo "sdk.dir=$ANDROID_HOME" > local.properties
           
-          # Dò tìm thư mục NDK mặc định của hệ thống máy chủ và ghi vào cấu hình
-          NDK_PATH=$(find /usr/local/lib/android/sdk/ndk/ -maxdepth 1 -type d | sort -V | tail -n 1)
-          if [ -n "$NDK_PATH" ]; then
-            echo "ndk.dir=$NDK_PATH" >> local.properties
-          fi
+          # 3. Sử dụng lệnh sed để xóa dòng ndkVersion ép buộc cũ trong file build.gradle (hoặc app/build.gradle)
+          find . -name "build.gradle" -exec sed -i '/ndkVersion/d' {} +
           
-          echo "=== NỘI DUNG FILE LOCAL.PROPERTIES VỪA VÁ ==="
-          cat local.properties
+          echo "=== ĐÃ XOÁ BỎ DÒNG NDKVERSION CŨ ĐỂ ĐỒNG BỘ HỆ THỐNG ==="
 
       - name: Build Android APK via Local Wrapper
         run: |
           cd android/ || cd */android/ || true
           chmod +x gradlew || true
-          # Thực hiện dọn dẹp bộ đệm lỗi cũ và tiến hành biên dịch dứt điểm
+          # Thực hiện dọn dẹp bộ đệm lỗi cũ và tiến hành biên dịch dứt điểm sang file APK
           ./gradlew clean assembleRelease -x test --continue --no-daemon
           
       - name: Upload Game APK

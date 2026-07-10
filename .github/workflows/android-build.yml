@@ -28,6 +28,7 @@ jobs:
 
       - name: Wipe Legacy Mac Cache and Fix Configurations
         run: |
+          # Dọn dẹp sạch sẽ bộ đệm của máy cũ trước khi nạp bản dịch mới
           find . -type d \( -name ".gradle" -o -name ".cxx" -o -name "build" \) -exec rm -rf {} +
           cd android/ || cd */android/ || true
           echo "sdk.dir=$ANDROID_HOME" > local.properties
@@ -38,8 +39,8 @@ jobs:
         run: |
           cd android/ || cd */android/ || true
           chmod +x gradlew || true
-          # CHUYỂN ĐỔI CHIẾN THUẬT: Đổi sang assembleDebug để bỏ qua xác thực chữ ký Keystore, ép xuất xưởng APK luôn
-          gradle assembleDebug -x test --continue --no-daemon
+          # BẺ GÃY TÁC VỤ CLEAN: Dùng cờ -x loại bỏ hoàn toàn các task externalNativeBuildClean gây sập nguồn của bạn
+          gradle assembleDebug -x :app:externalNativeBuildCleanDebug -x :app:externalNativeBuildCleanRelease -x test --continue --no-daemon
           
       - name: Upload Game APK
         uses: actions/upload-artifact@v4

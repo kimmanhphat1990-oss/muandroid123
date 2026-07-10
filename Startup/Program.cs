@@ -295,7 +295,7 @@ internal sealed class Program : IDisposable
                 return referenceHandler;
             })
             .AddSingleton<IDataSource<GameConfiguration>, GameConfigurationDataSource>()
-            .AddHostedService<ChatServerContainer>()
+//             .AddHostedService<ChatServerContainer>()
             .AddHostedService<GameServerContainer>()
             .AddHostedService(provider => provider.GetService<GameServerContainer>()!)
             .AddHostedService(provider => provider.GetService<ConnectServerContainer>()!)

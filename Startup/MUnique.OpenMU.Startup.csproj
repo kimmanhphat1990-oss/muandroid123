@@ -21,6 +21,37 @@
     <ProjectReference Include="..\Web\AdminPanel\MUnique.OpenMU.AdminPanel.csproj" />
     <ProjectReference Include="..\ChatServer\MUnique.OpenMU.ChatServer.csproj" />
     <ProjectReference Include="..\GameServer\MUnique.OpenMU.GameServer.csproj" />
+    <ProjectReference Include="..\Annotations\MUnique.OpenMU.Annotations.csproj" />
+    <ProjectReference Include="..\AttributeSystem\MUnique.OpenMU.AttributeSystem.csproj" />
+    <ProjectReference Include="..\ClientErrorLogDecryptor\MUnique.OpenMU.ClientErrorLogDecryptor.csproj" />
+    <ProjectReference Include="..\ConnectServer\MUnique.OpenMU.ConnectServer.csproj" />
+    <ProjectReference Include="..\Dapr\AdminPanel.Host\MUnique.OpenMU.AdminPanel.Host.csproj" />
+    <ProjectReference Include="..\Dapr\Common\MUnique.OpenMU.Dapr.Common.csproj" />
+    <ProjectReference Include="..\Dapr\ConnectServer.Host\MUnique.OpenMU.ConnectServer.Host.csproj" />
+    <ProjectReference Include="..\Dapr\FriendServer.Host\MUnique.OpenMU.FriendServer.Host.csproj" />
+    <ProjectReference Include="..\Dapr\GameServer.Host\MUnique.OpenMU.GameServer.Host.csproj" />
+    <ProjectReference Include="..\Dapr\GuildServer.Host\MUnique.OpenMU.GuildServer.Host.csproj" />
+    <ProjectReference Include="..\Dapr\LoginServer.Host\MUnique.OpenMU.LoginServer.Host.csproj" />
+    <ProjectReference Include="..\Dapr\ServerClients\MUnique.OpenMU.ServerClients.csproj" />
+    <ProjectReference Include="..\DataModel\MUnique.OpenMU.DataModel.csproj" />
+    <ProjectReference Include="..\FriendServer\MUnique.OpenMU.FriendServer.csproj" />
+    <ProjectReference Include="..\GameLogic\MUnique.OpenMU.GameLogic.csproj" />
+    <ProjectReference Include="..\GuildServer\MUnique.OpenMU.GuildServer.csproj" />
+    <ProjectReference Include="..\Interfaces\MUnique.OpenMU.Interfaces.csproj" />
+    <ProjectReference Include="..\LoginServer\MUnique.OpenMU.LoginServer.csproj" />
+    <ProjectReference Include="..\Network\MUnique.OpenMU.Network.csproj" />
+    <ProjectReference Include="..\Network\Packets\MUnique.OpenMU.Network.Packets.csproj" />
+    <ProjectReference Include="..\Pathfinding\MUnique.OpenMU.Pathfinding.csproj" />
+    <ProjectReference Include="..\Persistence\EntityFramework\MUnique.OpenMU.Persistence.EntityFramework.csproj" />
+    <ProjectReference Include="..\Persistence\InMemory\MUnique.OpenMU.Persistence.InMemory.csproj" />
+    <ProjectReference Include="..\Persistence\Initialization\MUnique.OpenMU.Persistence.Initialization.csproj" />
+    <ProjectReference Include="..\Persistence\MUnique.OpenMU.Persistence.csproj" />
+    <ProjectReference Include="..\Persistence\SourceGenerator\MUnique.OpenMU.Persistence.SourceGenerator.csproj" />
+    <ProjectReference Include="..\PlugIns\MUnique.OpenMU.PlugIns.csproj" />
+    <ProjectReference Include="..\SimpleModulusKeyGenerator\MUnique.OpenMU.SimpleModulusKeyGenerator.csproj" />
+    <ProjectReference Include="..\SourceGenerators\MUnique.OpenMU.SourceGenerators.csproj" />
+    <ProjectReference Include="..\Web\AdminPanel\MUnique.OpenMU.Web.AdminPanel.csproj" />
+    <ProjectReference Include="..\Web\ItemEditor\MUnique.OpenMU.Web.ItemEditor.csproj" />
     <!-- Tham chiếu các Project cần thiết khác -->
   </ItemGroup>
 

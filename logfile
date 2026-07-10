@@ -1,0 +1,25 @@
+2026-07-09 20:15:37.589 +07 [4363] LOG:  starting PostgreSQL 18.2 on aarch64-unknown-linux-android, compiled by Android (13989888, +pgo, +bolt, +lto, +mlgo, based on r563880c) clang version 21.0.0 (https://android.googlesource.com/toolchain/llvm-project 5e96669f06077099aa41290cdb4c5e6fa0f59349), 64-bit
+2026-07-09 20:15:37.589 +07 [4363] LOG:  listening on IPv6 address "::", port 5432
+2026-07-09 20:15:37.590 +07 [4363] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2026-07-09 20:15:37.591 +07 [4363] LOG:  listening on Unix socket "/data/data/com.termux/files/usr/tmp/.s.PGSQL.5432"
+2026-07-09 20:15:37.670 +07 [4379] LOG:  database system was interrupted; last known up at 2026-07-06 21:29:52 +07
+2026-07-09 20:15:38.073 +07 [4379] LOG:  database system was not properly shut down; automatic recovery in progress
+2026-07-09 20:15:38.079 +07 [4379] LOG:  redo starts at 0/368DBF8
+2026-07-09 20:15:38.079 +07 [4379] LOG:  invalid record length at 0/368DD38: expected at least 24, got 0
+2026-07-09 20:15:38.079 +07 [4379] LOG:  redo done at 0/368DD00 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2026-07-09 20:15:38.096 +07 [4377] LOG:  checkpoint starting: end-of-recovery immediate wait
+2026-07-09 20:15:38.110 +07 [4377] LOG:  checkpoint complete: wrote 0 buffers (0.0%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.002 s, total=0.014 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/368DD38, redo lsn=0/368DD38
+2026-07-09 20:15:38.134 +07 [4363] LOG:  database system is ready to accept connections
+2026-07-09 20:15:38.209 +07 [4384] ERROR:  database "openmu" already exists
+2026-07-09 20:15:38.209 +07 [4384] STATEMENT:  CREATE DATABASE openmu;
+2026-07-09 20:15:53.393 +07 [4363] LOG:  received fast shutdown request
+2026-07-09 20:15:53.399 +07 [4363] LOG:  aborting any active transactions
+2026-07-09 20:15:53.420 +07 [4363] LOG:  background worker "logical replication launcher" (PID 4383) exited with exit code 1
+2026-07-09 20:15:53.426 +07 [4377] LOG:  shutting down
+2026-07-09 20:15:53.434 +07 [4377] LOG:  checkpoint starting: shutdown immediate
+2026-07-09 20:15:53.450 +07 [4377] LOG:  checkpoint complete: wrote 1 buffers (0.0%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.002 s, total=0.024 s; sync files=2, longest=0.002 s, average=0.001 s; distance=3 kB, estimate=3 kB; lsn=0/368EBB8, redo lsn=0/368EBB8
+2026-07-09 20:15:53.538 +07 [4363] LOG:  database system is shut down
+2026-07-09 21:05:42.475 +07 [28490] FATAL:  lock file "postmaster.pid" already exists
+2026-07-09 21:05:42.475 +07 [28490] HINT:  Is another postmaster (PID 12571) running in data directory "/data/data/com.termux/files/usr/var/lib/postgresql"?
+2026-07-09 21:32:32.937 +07 [15295] FATAL:  lock file "postmaster.pid" already exists
+2026-07-09 21:32:32.937 +07 [15295] HINT:  Is another postmaster (PID 12571) running in data directory "/data/data/com.termux/files/usr/var/lib/postgresql"?

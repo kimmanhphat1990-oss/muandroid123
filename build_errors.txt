@@ -1,0 +1,139 @@
+  Determining projects to restore...
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Web/AdminPanel/MUnique.OpenMU.AdminPanel.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..AnnotationsMUnique.OpenMU.Annotations.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..AttributeSystemMUnique.OpenMU.AttributeSystem.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..ClientErrorLogDecryptorMUnique.OpenMU.ClientErrorLogDecryptor.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..ClientLauncherMUnique.OpenMU.ClientLauncher.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..ConnectServerMUnique.OpenMU.ConnectServer.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..DaprAdminPanel.HostMUnique.OpenMU.AdminPanel.Host.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..DaprChatServer.HostMUnique.OpenMU.ChatServer.Host.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..DaprCommonMUnique.OpenMU.Dapr.Common.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..DaprConnectServer.HostMUnique.OpenMU.ConnectServer.Host.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..DaprFriendServer.HostMUnique.OpenMU.FriendServer.Host.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..DaprGameServer.HostMUnique.OpenMU.GameServer.Host.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..DaprGuildServer.HostMUnique.OpenMU.GuildServer.Host.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..DaprLoginServer.HostMUnique.OpenMU.LoginServer.Host.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..DaprServerClientsMUnique.OpenMU.ServerClients.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..DataModelMUnique.OpenMU.DataModel.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..FriendServerMUnique.OpenMU.FriendServer.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..GameLogicMUnique.OpenMU.GameLogic.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..GameServerMUnique.OpenMU.GameServer.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..GuildServerMUnique.OpenMU.GuildServer.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..InterfacesMUnique.OpenMU.Interfaces.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..LoginServerMUnique.OpenMU.LoginServer.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..NetworkAnalyzerMUnique.OpenMU.Network.Analyzer.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..NetworkMUnique.OpenMU.Network.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..NetworkPacketsMUnique.OpenMU.Network.Packets.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..PathfindingMUnique.OpenMU.Pathfinding.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..PersistenceEntityFrameworkMUnique.OpenMU.Persistence.EntityFramework.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..PersistenceInMemoryMUnique.OpenMU.Persistence.InMemory.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..PersistenceInitializationMUnique.OpenMU.Persistence.Initialization.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..PersistenceMUnique.OpenMU.Persistence.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..PersistenceSourceGeneratorMUnique.OpenMU.Persistence.SourceGenerator.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..PlugInsMUnique.OpenMU.PlugIns.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..SimpleModulusKeyGeneratorMUnique.OpenMU.SimpleModulusKeyGenerator.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..SourceGeneratorsMUnique.OpenMU.SourceGenerators.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..WebAdminPanelMUnique.OpenMU.Web.AdminPanel.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..WebItemEditorMUnique.OpenMU.Web.ItemEditor.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..WebMapMUnique.OpenMU.Web.Map.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..WebSharedMUnique.OpenMU.Web.Shared.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Web/AdminPanel/MUnique.OpenMU.AdminPanel.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..AnnotationsMUnique.OpenMU.Annotations.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..AttributeSystemMUnique.OpenMU.AttributeSystem.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..ClientErrorLogDecryptorMUnique.OpenMU.ClientErrorLogDecryptor.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..ClientLauncherMUnique.OpenMU.ClientLauncher.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..ConnectServerMUnique.OpenMU.ConnectServer.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..DaprAdminPanel.HostMUnique.OpenMU.AdminPanel.Host.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..DaprChatServer.HostMUnique.OpenMU.ChatServer.Host.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..DaprCommonMUnique.OpenMU.Dapr.Common.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..DaprConnectServer.HostMUnique.OpenMU.ConnectServer.Host.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..DaprFriendServer.HostMUnique.OpenMU.FriendServer.Host.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..DaprGameServer.HostMUnique.OpenMU.GameServer.Host.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..DaprGuildServer.HostMUnique.OpenMU.GuildServer.Host.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..DaprLoginServer.HostMUnique.OpenMU.LoginServer.Host.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..DaprServerClientsMUnique.OpenMU.ServerClients.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..DataModelMUnique.OpenMU.DataModel.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..FriendServerMUnique.OpenMU.FriendServer.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..GameLogicMUnique.OpenMU.GameLogic.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..GameServerMUnique.OpenMU.GameServer.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..GuildServerMUnique.OpenMU.GuildServer.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..InterfacesMUnique.OpenMU.Interfaces.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..LoginServerMUnique.OpenMU.LoginServer.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..NetworkAnalyzerMUnique.OpenMU.Network.Analyzer.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..NetworkMUnique.OpenMU.Network.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..NetworkPacketsMUnique.OpenMU.Network.Packets.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..PathfindingMUnique.OpenMU.Pathfinding.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..PersistenceEntityFrameworkMUnique.OpenMU.Persistence.EntityFramework.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..PersistenceInMemoryMUnique.OpenMU.Persistence.InMemory.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..PersistenceInitializationMUnique.OpenMU.Persistence.Initialization.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..PersistenceMUnique.OpenMU.Persistence.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..PersistenceSourceGeneratorMUnique.OpenMU.Persistence.SourceGenerator.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..PlugInsMUnique.OpenMU.PlugIns.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..SimpleModulusKeyGeneratorMUnique.OpenMU.SimpleModulusKeyGenerator.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..SourceGeneratorsMUnique.OpenMU.SourceGenerators.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..WebAdminPanelMUnique.OpenMU.Web.AdminPanel.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..WebItemEditorMUnique.OpenMU.Web.ItemEditor.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..WebMapMUnique.OpenMU.Web.Map.csproj" because it was not found.
+  Skipping project "/data/data/com.termux/files/home/muandroid-clean/Startup/..WebSharedMUnique.OpenMU.Web.Shared.csproj" because it was not found.
+  Restored /data/data/com.termux/files/home/muandroid-clean/Startup/MUnique.OpenMU.Startup.csproj (in 3.96 sec).
+  Restored /data/data/com.termux/files/home/muandroid-clean/LoginServer/MUnique.OpenMU.LoginServer.csproj (in 3.96 sec).
+  Restored /data/data/com.termux/files/home/muandroid-clean/SimpleModulusKeyGenerator/MUnique.OpenMU.SimpleModulusKeyGenerator.csproj (in 3.96 sec).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Network/Analyzer/MUnique.OpenMU.Network.Analyzer.csproj (in 3.96 sec).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Web/AdminPanel/MUnique.OpenMU.Web.AdminPanel.csproj (in 3.96 sec).
+  Restored /data/data/com.termux/files/home/muandroid-clean/SourceGenerators/MUnique.OpenMU.SourceGenerators.csproj (in 3.96 sec).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Persistence/InMemory/MUnique.OpenMU.Persistence.InMemory.csproj (in 3.96 sec).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Dapr/GameServer.Host/MUnique.OpenMU.GameServer.Host.csproj (in 3.96 sec).
+  Restored /data/data/com.termux/files/home/muandroid-clean/AttributeSystem/MUnique.OpenMU.AttributeSystem.csproj (in 89 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Annotations/MUnique.OpenMU.Annotations.csproj (in 126 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/ChatServer/MUnique.OpenMU.ChatServer.csproj (in 280 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Persistence/SourceGenerator/MUnique.OpenMU.Persistence.SourceGenerator.csproj (in 150 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/GuildServer/MUnique.OpenMU.GuildServer.csproj (in 318 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Persistence/MUnique.OpenMU.Persistence.csproj (in 313 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/GameLogic/MUnique.OpenMU.GameLogic.csproj (in 346 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Persistence/Initialization/MUnique.OpenMU.Persistence.Initialization.csproj (in 358 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Pathfinding/MUnique.OpenMU.Pathfinding.csproj (in 30 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/GameServer/MUnique.OpenMU.GameServer.csproj (in 366 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/ClientErrorLogDecryptor/MUnique.OpenMU.ClientErrorLogDecryptor.csproj (in 22 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Interfaces/MUnique.OpenMU.Interfaces.csproj (in 58 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/ConnectServer/MUnique.OpenMU.ConnectServer.csproj (in 78 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Network/Packets/MUnique.OpenMU.Network.Packets.csproj (in 98 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/FriendServer/MUnique.OpenMU.FriendServer.csproj (in 204 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/PlugIns/MUnique.OpenMU.PlugIns.csproj (in 46 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Network/MUnique.OpenMU.Network.csproj (in 62 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/DataModel/MUnique.OpenMU.DataModel.csproj (in 80 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Web/Map/MUnique.OpenMU.Web.Map.csproj (in 222 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Web/ItemEditor/MUnique.OpenMU.Web.ItemEditor.csproj (in 347 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Dapr/ChatServer.Host/MUnique.OpenMU.ChatServer.Host.csproj (in 412 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Persistence/EntityFramework/MUnique.OpenMU.Persistence.EntityFramework.csproj (in 1.37 sec).
+  Restored /data/data/com.termux/files/home/muandroid-clean/ClientLauncher/MUnique.OpenMU.ClientLauncher.csproj (in 77 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Dapr/AdminPanel.Host/MUnique.OpenMU.AdminPanel.Host.csproj (in 448 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Dapr/ServerClients/MUnique.OpenMU.ServerClients.csproj (in 730 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Web/Shared/MUnique.OpenMU.Web.Shared.csproj (in 1.72 sec).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Dapr/LoginServer.Host/MUnique.OpenMU.LoginServer.Host.csproj (in 555 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Dapr/GuildServer.Host/MUnique.OpenMU.GuildServer.Host.csproj (in 561 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Dapr/ConnectServer.Host/MUnique.OpenMU.ConnectServer.Host.csproj (in 535 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Dapr/FriendServer.Host/MUnique.OpenMU.FriendServer.Host.csproj (in 562 ms).
+  Restored /data/data/com.termux/files/home/muandroid-clean/Dapr/Common/MUnique.OpenMU.Dapr.Common.csproj (in 853 ms).
+CSC : warning SA0001: XML comment analysis is disabled due to project configuration (https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA0001.md) [/data/data/com.termux/files/home/muandroid-clean/Annotations/MUnique.OpenMU.Annotations.csproj]
+  MUnique.OpenMU.Annotations -> /data/data/com.termux/files/home/muandroid-clean/Annotations/bin/Release/MUnique.OpenMU.Annotations.dll
+Attempting to cancel the build...
+/data/data/com.termux/files/home/muandroid-clean/Network/Packets/MUnique.OpenMU.Network.Packets.csproj(68,5): error MSB3073: The command "npx xslt3 -xsl:GenerateMarkdownDocs.xslt -o:../../../docs/Packets/ClientToServer.md -s:ClientToServer/ClientToServerPackets.xml" exited with code 130.
+/data/data/com.termux/files/usr/lib/dotnet/sdk/10.0.109/Roslyn/Microsoft.CSharp.Core.targets(84,5): error MSB6006: "csc" exited with code 130. [/data/data/com.termux/files/home/muandroid-clean/ClientLauncher/MUnique.OpenMU.ClientLauncher.csproj]
+/data/data/com.termux/files/usr/lib/dotnet/sdk/10.0.109/Roslyn/Microsoft.CSharp.Core.targets(84,5): error MSB6006: "csc" exited with code 130. [/data/data/com.termux/files/home/muandroid-clean/SourceGenerators/MUnique.OpenMU.SourceGenerators.csproj]
+/data/data/com.termux/files/usr/lib/dotnet/sdk/10.0.109/Roslyn/Microsoft.CSharp.Core.targets(84,5): error MSB6006: "csc" exited with code 130. [/data/data/com.termux/files/home/muandroid-clean/PlugIns/MUnique.OpenMU.PlugIns.csproj]
+/data/data/com.termux/files/usr/lib/dotnet/sdk/10.0.109/Roslyn/Microsoft.CSharp.Core.targets(84,5): error MSB6006: "csc" exited with code 130. [/data/data/com.termux/files/home/muandroid-clean/AttributeSystem/MUnique.OpenMU.AttributeSystem.csproj]
+/data/data/com.termux/files/usr/lib/dotnet/sdk/10.0.109/Roslyn/Microsoft.CSharp.Core.targets(84,5): error MSB6006: "csc" exited with code 130. [/data/data/com.termux/files/home/muandroid-clean/Interfaces/MUnique.OpenMU.Interfaces.csproj]
+
+Build FAILED.
+
+CSC : warning SA0001: XML comment analysis is disabled due to project configuration (https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA0001.md) [/data/data/com.termux/files/home/muandroid-clean/Annotations/MUnique.OpenMU.Annotations.csproj]
+/data/data/com.termux/files/home/muandroid-clean/Network/Packets/MUnique.OpenMU.Network.Packets.csproj(68,5): error MSB3073: The command "npx xslt3 -xsl:GenerateMarkdownDocs.xslt -o:../../../docs/Packets/ClientToServer.md -s:ClientToServer/ClientToServerPackets.xml" exited with code 130.
+/data/data/com.termux/files/usr/lib/dotnet/sdk/10.0.109/Roslyn/Microsoft.CSharp.Core.targets(84,5): error MSB6006: "csc" exited with code 130. [/data/data/com.termux/files/home/muandroid-clean/ClientLauncher/MUnique.OpenMU.ClientLauncher.csproj]
+/data/data/com.termux/files/usr/lib/dotnet/sdk/10.0.109/Roslyn/Microsoft.CSharp.Core.targets(84,5): error MSB6006: "csc" exited with code 130. [/data/data/com.termux/files/home/muandroid-clean/SourceGenerators/MUnique.OpenMU.SourceGenerators.csproj]
+/data/data/com.termux/files/usr/lib/dotnet/sdk/10.0.109/Roslyn/Microsoft.CSharp.Core.targets(84,5): error MSB6006: "csc" exited with code 130. [/data/data/com.termux/files/home/muandroid-clean/PlugIns/MUnique.OpenMU.PlugIns.csproj]
+/data/data/com.termux/files/usr/lib/dotnet/sdk/10.0.109/Roslyn/Microsoft.CSharp.Core.targets(84,5): error MSB6006: "csc" exited with code 130. [/data/data/com.termux/files/home/muandroid-clean/AttributeSystem/MUnique.OpenMU.AttributeSystem.csproj]
+/data/data/com.termux/files/usr/lib/dotnet/sdk/10.0.109/Roslyn/Microsoft.CSharp.Core.targets(84,5): error MSB6006: "csc" exited with code 130. [/data/data/com.termux/files/home/muandroid-clean/Interfaces/MUnique.OpenMU.Interfaces.csproj]
+    1 Warning(s)
+    6 Error(s)
+
+Time Elapsed 00:01:55.26

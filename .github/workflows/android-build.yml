@@ -21,25 +21,29 @@ jobs:
       - name: Setup Android Toolchains
         uses: android-actions/setup-android@v3
 
-      # Nâng cấp và khóa cứng phiên bản Gradle lên đúng 8.13 để khớp với plugin Android của game
       - name: Setup Target Gradle 8.13
         uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: '8.13'
 
-      - name: Patch Gradle and NDK Configurations
+      # BƯỚC QUYẾT ĐỊNH: Xóa sạch mọi thư mục ẩn chứa đường dẫn rác /Users/bramante/
+      - name: Wipe Legacy Mac Cache and Fix Configurations
         run: |
+          # Tìm và xoá triệt để các thư mục đệm cấu hình cũ (.cxx, .gradle, build) trong toàn bộ mã nguồn
+          find . -type d \( -name ".gradle" -o -name ".cxx" -o -name "build" \) -exec rm -rf {} +
+          
+          # Di chuyển vào thư mục Android để cấu hình lại local.properties sạch lỗi
           cd android/ || cd */android/ || true
           echo "sdk.dir=$ANDROID_HOME" > local.properties
           find . -name "build.gradle" -exec sed -i '/ndkVersion/d' {} +
-          echo "=== ĐÃ ĐỒNG BỘ HOÀN TOÀN FILE CẤU HÌNH VỚI GRADLE 8.13 ==="
+          echo "=== ĐÃ XOÁ SẠCH BỘ ĐỆM ĐƯỜNG DẪN CŨ CỦA MÁY MAC ==="
 
       - name: Build Android APK via Target Gradle
         run: |
           cd android/ || cd */android/ || true
           chmod +x gradlew || true
-          # Thực hiện dọn dẹp bộ đệm lỗi cũ và tiến hành biên dịch dứt điểm sang file APK
-          gradle clean assembleRelease -x test --continue --no-daemon
+          # Biên dịch trực tiếp, bỏ qua bước dọn dẹp cũ (clean) để tránh gọi nhầm tác vụ externalNativeBuildClean
+          gradle assembleRelease -x test --continue --no-daemon
           
       - name: Upload Game APK
         uses: actions/upload-artifact@v4

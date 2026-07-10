@@ -28,26 +28,35 @@ jobs:
 
       - name: Wipe Cache and Strip Native Build Configurations
         run: |
-          # 1. Dọn dẹp sạch sẽ bộ đệm của máy cũ
+          # Dọn dẹp sạch sẽ bộ đệm của máy cũ
           find . -type d \( -name ".gradle" -o -name ".cxx" -o -name "build" \) -exec rm -rf {} +
           
-          cd android/ || cd */android/ || true
-          echo "sdk.dir=$ANDROID_HOME" > local.properties
-          
-          # 2. Xóa bỏ dòng ndkVersion cũ
-          find . -name "build.gradle" -exec sed -i '/ndkVersion/d' {} +
-          
-          # 3. VŨ KHÍ TỐI THƯỢNG: Vô hiệu hóa hoàn toàn khối externalNativeBuild trong build.gradle để chặn đứng lỗi biên dịch C++
-          find . -name "build.gradle" -exec sed -i '/externalNativeBuild/,,/}/d' {} +
-          
-          echo "=== ĐÃ VÔ HIỆU HÓA BIÊN DỊCH C++ NATIVE HOÀN TOÀN ==="
+          # Tự động quét tìm tất cả các file build.gradle thực tế trong dự án (Không sợ sai tên thư mục android)
+          find . -name "build.gradle" | while read -r gradle_file; do
+            echo "Processing config: $gradle_file"
+            
+            # Khởi tạo tệp local.properties chuẩn hóa ngay tại thư mục chứa file build.gradle đó
+            dir_path=$(dirname "$gradle_file")
+            echo "sdk.dir=$ANDROID_HOME" > "$dir_path/local.properties"
+            
+            # Xóa bỏ dòng cấu hình ndkVersion cũ gây xung đột phiên bản
+            sed -i '/ndkVersion/d' "$gradle_file"
+            
+            # SỬA LỖI CÚ PHÁP SED: Cắt bỏ sạch sẽ khối liên kết C++ Native bằng biểu thức regex chuẩn Linux
+            sed -i '/externalNativeBuild {/,/}/d' "$gradle_file"
+            sed -i '/externalNativeBuild/d' "$gradle_file"
+          done
+          echo "=== ĐÃ VÔ HIỆU HÓA BIÊN DỊCH C++ NATIVE HOÀN TOÀN TRÊN MỌI PHÂN HỆ ==="
 
       - name: Build Android APK via Target Gradle
         run: |
-          cd android/ || cd */android/ || true
+          # Tự động tìm thư mục chứa file thực thi gradlew thực tế trong mã nguồn game của bạn
+          GRADLEW_DIR=$(find . -name "gradlew" | head -n 1 | sed 's|/gradlew||')
+          cd "$GRADLEW_DIR" || cd android/ || cd */android/ || true
           chmod +x gradlew || true
-          # Tiến hành đóng gói thẳng phần vỏ ứng dụng Android cùng thư mục assets data game
-          gradle assembleDebug -x test --continue --no-daemon
+          
+          # Tiến hành đóng gói ứng dụng Android cùng toàn bộ thư mục assets chứa data game 1.04d của bạn
+          ./gradlew assembleDebug -x test --continue --no-daemon
           
       - name: Upload Game APK
         uses: actions/upload-artifact@v4

@@ -7,24 +7,23 @@ on:
 
 jobs:
   build-apk:
-    # Quay lại hệ điều hành mới nhất để GitHub Actions không bắt bạn phải xếp hàng đợi (Queued) nữa
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source
         uses: actions/checkout@v4
 
-      - name: Setup Java JDK 11
+      - name: Setup Java JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          # Giữ nguyên Java 11 để đọc hiểu cấu trúc code game cũ của bạn
-          java-version: '11'
+          # Nâng cấp lên Java 17 để khớp chính xác với yêu cầu của Android Gradle Plugin
+          java-version: '17'
 
       - name: Build Android APK via Local Wrapper
         run: |
           cd android/ || cd */android/ || true
           chmod +x gradlew || true
-          # Thực hiện dọn dẹp bộ đệm lỗi cũ và biên dịch trực tiếp thông qua Wrapper nội bộ của game
+          # Biên dịch trực tiếp, bỏ qua kiểm tra lỗi cảnh báo tương thích cũ để ép xuất file APK
           ./gradlew clean assembleRelease -x test --continue --no-daemon
           
       - name: Upload Game APK

@@ -42,14 +42,13 @@ jobs:
             # Xóa bỏ dòng cấu hình ndkVersion cũ gây xung đột phiên bản
             sed -i '/ndkVersion/d' "$gradle_file"
             
-            # GIẢI PHÁP AN TOÀN TUYỆT ĐỐI: Biến các dòng cấu hình externalNativeBuild thành ghi chú rỗng, không xóa ngoặc nhọn
+            # Khóa hoàn toàn các dòng cấu hình externalNativeBuild bằng dấu ghi chú // để bảo vệ dấu đóng mở ngoặc }
             sed -i 's|externalNativeBuild|// externalNativeBuild|g' "$gradle_file"
             sed -i 's|cmake {|// cmake {|g' "$gradle_file"
             sed -i 's|ndkBuild {|// ndkBuild {|g' "$gradle_file"
             sed -i 's|path |// path |g' "$gradle_file"
-          </_file>
           done
-          echo "=== ĐA KHÓA HOÀN TOÀN BIÊN DỊCH C++ NATIVE BẰNG COMMENT ==="
+          echo "=== ĐÃ KHÓA HOÀN TOÀN BIÊN DỊCH C++ NATIVE BẰNG COMMENT ==="
 
       - name: Build Android APK via Target Gradle
         run: |

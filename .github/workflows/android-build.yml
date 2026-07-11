@@ -1,4 +1,4 @@
-name: Audit Project Structure
+name: Compile MU Mobile APK
 on:
   push:
     branches:
@@ -6,20 +6,51 @@ on:
   workflow_dispatch:
 
 jobs:
-  audit-structure:
+  build-apk:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source
         uses: actions/checkout@v4
 
-      - name: Scan and List All Files
+      - name: Setup Java JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Setup Android Toolchains (Includes NDK)
+        uses: android-actions/setup-android@v3
+        with:
+          ndk-version: '25.2.9519653'
+
+      - name: Setup Target Gradle 8.13
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.13'
+
+      - name: Configure Android Local SDK inside Inner Folder
         run: |
-          echo "=== TOÀN BỘ CẤU TRÚC THƯ MỤC TRONG REPO CỦA BẠN ==="
-          find . -maxdepth 3 -not -path '*/.*'
+          # 1. Định vị chính xác thư mục android chứa mã nguồn thật
+          REAL_ANDROID_DIR="Mu-Online-CrossPlataform-main/android"
           
-          echo -e "\n=== TÌM VỊ TRÍ CHÍNH XÁC CỦA CÁC FILE GRADLE ==="
-          find . -name "build.gradle"
+          # 2. Tạo tệp local.properties để nạp SDK/NDK cho dự án thật
+          echo "sdk.dir=$ANDROID_HOME" > "$REAL_ANDROID_DIR/local.properties"
+          echo "ndk.dir=$ANDROID_HOME/ndk/25.2.9519653" >> "$REAL_ANDROID_DIR/local.properties"
           
-          echo -e "\n=== TÌM VỊ TRÍ CHÍNH XÁC CỦA CÁC FILE CMAKE (C++) ==="
-          find . -name "CMakeLists.txt"
+          echo "=== ĐÃ ĐỒNG BỘ ĐƯỜNG DẪN SDK & NDK CHO THƯ MỤC THẬT ==="
+
+      - name: Build Android APK via Inner Gradle
+        run: |
+          # Di chuyển thẳng vào thư mục android chứa mã nguồn game thật
+          cd Mu-Online-CrossPlataform-main/android
+          
+          # Cấp quyền thực thi và tiến hành biên dịch đóng gói APK debug
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
+          
+      - name: Upload Game APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: MU-Online-Classic-Client
+          path: "Mu-Online-CrossPlataform-main/android/app/build/outputs/apk/debug/*.apk"
           

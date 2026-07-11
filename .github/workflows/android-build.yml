@@ -1,4 +1,4 @@
-name: Compile MU Mobile APK
+name: Audit Project Structure
 on:
   push:
     branches:
@@ -6,54 +6,20 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-apk:
+  audit-structure:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source
         uses: actions/checkout@v4
 
-      - name: Setup Java JDK 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'zulu'
-          java-version: '17'
-
-      - name: Setup Android Toolchains (Includes NDK)
-        uses: android-actions/setup-android@v3
-        with:
-          ndk-version: '25.2.9519653' # Bản NDK chuẩn ổn định cho C++17
-
-      - name: Setup Target Gradle 8.13
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          gradle-version: '8.13'
-
-      - name: Configure Android Local SDK and NDK
+      - name: Scan and List All Files
         run: |
-          # Dọn dẹp sạch sẽ bộ đệm của máy ảo
-          find . -type d \( -name ".gradle" -o -name ".cxx" -o -name "build" \) -exec rm -rf {} +
+          echo "=== TOÀN BỘ CẤU TRÚC THƯ MỤC TRONG REPO CỦA BẠN ==="
+          find . -maxdepth 3 -not -path '*/.*'
           
-          # Thiết lập cấu hình SDK và NDK chính xác cho Gradle nhận diện để biên dịch C++
-          find . -name "build.gradle" | while read -r gradle_file; do
-            dir_path=$(dirname "$gradle_file")
-            echo "sdk.dir=$ANDROID_HOME" > "$dir_path/local.properties"
-            echo "ndk.dir=$ANDROID_HOME/ndk/25.2.9519653" >> "$dir_path/local.properties"
-          done
-          echo "=== ĐÃ ĐỒNG BỘ ĐƯỜNG DẪN SDK & NDK THÀNH CÔNG ==="
-
-      - name: Build Android APK via Target Gradle
-        run: |
-          # Tìm chính xác thư mục chứa gradlew và tiến hành đóng gói thực tế
-          GRADLEW_DIR=$(find . -name "gradlew" | head -n 1 | sed 's|/gradlew||')
-          cd "$GRADLEW_DIR" || cd android || true
-          chmod +x gradlew || true
+          echo -e "\n=== TÌM VỊ TRÍ CHÍNH XÁC CỦA CÁC FILE GRADLE ==="
+          find . -name "build.gradle"
           
-          # Chạy lệnh biên dịch toàn bộ mã nguồn game
-          ./gradlew assembleDebug --no-daemon
-          
-      - name: Upload Game APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: MU-Online-Classic-Client
-          path: "**/build/outputs/apk/debug/*.apk"
+          echo -e "\n=== TÌM VỊ TRÍ CHÍNH XÁC CỦA CÁC FILE CMAKE (C++) ==="
+          find . -name "CMakeLists.txt"
           

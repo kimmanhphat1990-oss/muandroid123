@@ -21,19 +21,18 @@ jobs:
       - name: Setup Android Toolchains
         uses: android-actions/setup-android@v3
 
-      # CHÚ Ý: Đã gỡ bỏ action tự động nạp cache của Gradle để loại bỏ file rỗng 4KB cũ
-      - name: Force Download Gradle 8.13 without Cache
-        run: |
-          wget -q https://gradle.org
-          sudo unzip -q gradle-8.13-bin.zip -d /opt/
-          echo "/opt/gradle-8.13/bin" >> $GITHUB_PATH
+      - name: Setup Target Gradle 8.13
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.13'
+          cache-disabled: true # Ép tắt hoàn toàn tính năng lưu cache của Action này
 
       - name: Pure Clean, Download NDK and Configure Paths
         run: |
-          # 1. Ép xóa sạch toàn bộ các thư mục build cũ dính cache rỗng nếu có
+          # 1. Xóa sạch mọi thư mục build cũ dính cache file rỗng 4KB cũ
           find . -type d \( -name ".gradle" -o -name ".cxx" -o -name "build" -o -name "outputs" \) -exec rm -rf {} +
           
-          # 2. Cài đặt mới tinh phiên bản NDK 25.2.9519653
+          # 2. Cài đặt phiên bản NDK 25.2.9519653 chuẩn
           echo "y" | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --install "ndk;25.2.9519653"
           
           # 3. Nạp đường dẫn SDK/NDK chuẩn vào thư mục dự án thật
@@ -48,7 +47,7 @@ jobs:
           cd Mu-Online-CrossPlataform-main/android
           chmod +x gradlew
           
-          # Sử dụng thêm cờ --no-build-cache để ép Gradle phải tự tay biên dịch lại từng file C++/Java từ đầu
+          # Ép Gradle phải tự tay biên dịch lại từng file C++/Java từ đầu, không lấy đệm cũ
           ./gradlew assembleDebug --no-daemon --no-build-cache
           
       - name: Upload Game APK

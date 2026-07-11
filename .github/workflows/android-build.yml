@@ -26,42 +26,31 @@ jobs:
         with:
           gradle-version: '8.13'
 
-      - name: Wipe Cache and Neutralize Native Build via Comments
+      - name: Configure Android Local SDK and Local Properties
         run: |
-          # 1. Dọn dẹp sạch sẽ bộ đệm của máy cũ
+          # 1. Dọn dẹp sạch sẽ bộ đệm của máy ảo trực tuyến
           find . -type d \( -name ".gradle" -o -name ".cxx" -o -name "build" \) -exec rm -rf {} +
           
-          # 2. Quét tìm tất cả các file build.gradle thực tế trong dự án
+          # 2. Tạo file định danh cấu hình đường dẫn SDK chuẩn chỉnh cho Android Studio
           find . -name "build.gradle" | while read -r gradle_file; do
-            echo "Processing config: $gradle_file"
-            
-            # Khởi tạo tệp local.properties chuẩn hóa ngay tại thư mục chứa file build.gradle đó
             dir_path=$(dirname "$gradle_file")
             echo "sdk.dir=$ANDROID_HOME" > "$dir_path/local.properties"
-            
-            # Xóa bỏ dòng cấu hình ndkVersion cũ gây xung đột phiên bản
-            sed -i '/ndkVersion/d' "$gradle_file"
-            
-            # Khóa hoàn toàn các dòng cấu hình externalNativeBuild bằng dấu ghi chú // để bảo vệ dấu đóng mở ngoặc }
-            sed -i 's|externalNativeBuild|// externalNativeBuild|g' "$gradle_file"
-            sed -i 's|cmake {|// cmake {|g' "$gradle_file"
-            sed -i 's|ndkBuild {|// ndkBuild {|g' "$gradle_file"
-            sed -i 's|path |// path |g' "$gradle_file"
           done
-          echo "=== ĐÃ KHÓA HOÀN TOÀN BIÊN DỊCH C++ NATIVE BẰNG COMMENT ==="
+          echo "=== ĐÃ ĐỒNG BỘ ĐƯỜNG DẪN SDK THÀNH CÔNG ==="
 
       - name: Build Android APK via Target Gradle
         run: |
-          # Tự động tìm thư mục chứa file thực thi gradlew thực tế trong mã nguồn game
+          # 1. Tìm chính xác thư mục chứa công cụ thực thi đóng gói gradlew trong mã nguồn
           GRADLEW_DIR=$(find . -name "gradlew" | head -n 1 | sed 's|/gradlew||')
-          cd "$GRADLEW_DIR" || cd android/ || cd */android/ || true
+          cd "$GRADLEW_DIR" || cd android || true
           chmod +x gradlew || true
           
-          # Tiến hành đóng gói ứng dụng Android cùng toàn bộ thư mục assets chứa data game của bạn
-          ./gradlew assembleDebug -x test --continue --no-daemon
+          # 2. Tiến hành chạy lệnh đóng gói APK bản Debug kèm nạp dữ liệu Assets
+          ./gradlew assembleDebug --no-daemon
           
       - name: Upload Game APK
         uses: actions/upload-artifact@v4
         with:
           name: MU-Online-Classic-Client
           path: "**/*.apk"
+          

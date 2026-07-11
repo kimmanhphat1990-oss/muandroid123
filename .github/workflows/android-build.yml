@@ -18,39 +18,42 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Setup Android Toolchains
+      - name: Setup Android Toolchains (Includes NDK)
         uses: android-actions/setup-android@v3
+        with:
+          ndk-version: '25.2.9519653' # Bản NDK chuẩn ổn định cho C++17
 
       - name: Setup Target Gradle 8.13
         uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: '8.13'
 
-      - name: Configure Android Local SDK and Local Properties
+      - name: Configure Android Local SDK and NDK
         run: |
-          # 1. Dọn dẹp sạch sẽ bộ đệm của máy ảo trực tuyến
+          # Dọn dẹp sạch sẽ bộ đệm của máy ảo
           find . -type d \( -name ".gradle" -o -name ".cxx" -o -name "build" \) -exec rm -rf {} +
           
-          # 2. Tạo file định danh cấu hình đường dẫn SDK chuẩn chỉnh cho Android Studio
+          # Thiết lập cấu hình SDK và NDK chính xác cho Gradle nhận diện để biên dịch C++
           find . -name "build.gradle" | while read -r gradle_file; do
             dir_path=$(dirname "$gradle_file")
             echo "sdk.dir=$ANDROID_HOME" > "$dir_path/local.properties"
+            echo "ndk.dir=$ANDROID_HOME/ndk/25.2.9519653" >> "$dir_path/local.properties"
           done
-          echo "=== ĐÃ ĐỒNG BỘ ĐƯỜNG DẪN SDK THÀNH CÔNG ==="
+          echo "=== ĐÃ ĐỒNG BỘ ĐƯỜNG DẪN SDK & NDK THÀNH CÔNG ==="
 
       - name: Build Android APK via Target Gradle
         run: |
-          # 1. Tìm chính xác thư mục chứa công cụ thực thi đóng gói gradlew trong mã nguồn
+          # Tìm chính xác thư mục chứa gradlew và tiến hành đóng gói thực tế
           GRADLEW_DIR=$(find . -name "gradlew" | head -n 1 | sed 's|/gradlew||')
           cd "$GRADLEW_DIR" || cd android || true
           chmod +x gradlew || true
           
-          # 2. Tiến hành chạy lệnh đóng gói APK bản Debug kèm nạp dữ liệu Assets
+          # Chạy lệnh biên dịch toàn bộ mã nguồn game
           ./gradlew assembleDebug --no-daemon
           
       - name: Upload Game APK
         uses: actions/upload-artifact@v4
         with:
           name: MU-Online-Classic-Client
-          path: "**/*.apk"
+          path: "**/build/outputs/apk/debug/*.apk"
           

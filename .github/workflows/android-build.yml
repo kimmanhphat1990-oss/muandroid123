@@ -21,33 +21,35 @@ jobs:
       - name: Setup Android Toolchains
         uses: android-actions/setup-android@v3
 
-      - name: Setup Target Gradle 8.13
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          gradle-version: '8.13'
-
-      - name: Download NDK and Configure SDK/NDK Path
+      # CHÚ Ý: Đã gỡ bỏ action tự động nạp cache của Gradle để loại bỏ file rỗng 4KB cũ
+      - name: Force Download Gradle 8.13 without Cache
         run: |
-          # 1. Cài đặt phiên bản NDK 25.2.9519653 bằng sdkmanager của hệ thống
+          wget -q https://gradle.org
+          sudo unzip -q gradle-8.13-bin.zip -d /opt/
+          echo "/opt/gradle-8.13/bin" >> $GITHUB_PATH
+
+      - name: Pure Clean, Download NDK and Configure Paths
+        run: |
+          # 1. Ép xóa sạch toàn bộ các thư mục build cũ dính cache rỗng nếu có
+          find . -type d \( -name ".gradle" -o -name ".cxx" -o -name "build" -o -name "outputs" \) -exec rm -rf {} +
+          
+          # 2. Cài đặt mới tinh phiên bản NDK 25.2.9519653
           echo "y" | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --install "ndk;25.2.9519653"
           
-          # 2. Định vị thư mục dự án thật
+          # 3. Nạp đường dẫn SDK/NDK chuẩn vào thư mục dự án thật
           REAL_ANDROID_DIR="Mu-Online-CrossPlataform-main/android"
-          
-          # 3. Tạo file cấu hình local.properties nạp trực tiếp đường dẫn SDK và NDK vừa tải
           echo "sdk.dir=$ANDROID_HOME" > "$REAL_ANDROID_DIR/local.properties"
           echo "ndk.dir=$ANDROID_HOME/ndk/25.2.9519653" >> "$REAL_ANDROID_DIR/local.properties"
           
-          echo "=== ĐÃ CÀI ĐẶT NDK VÀ ĐỒNG BỘ ĐƯỜNG DẪN THÀNH CÔNG ==="
+          echo "=== ĐÃ DỌN SẠCH CŨ, TẢI MỚI NDK THÀNH CÔNG ==="
 
       - name: Build Android APK via Inner Gradle
         run: |
-          # Di chuyển vào thư mục chứa mã nguồn game thật
           cd Mu-Online-CrossPlataform-main/android
-          
-          # Cấp quyền thực thi và tiến hành biên dịch đóng gói toàn bộ mã nguồn
           chmod +x gradlew
-          ./gradlew assembleDebug --no-daemon
+          
+          # Sử dụng thêm cờ --no-build-cache để ép Gradle phải tự tay biên dịch lại từng file C++/Java từ đầu
+          ./gradlew assembleDebug --no-daemon --no-build-cache
           
       - name: Upload Game APK
         uses: actions/upload-artifact@v4

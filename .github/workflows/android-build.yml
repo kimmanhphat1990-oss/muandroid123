@@ -18,33 +18,34 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Setup Android Toolchains (Includes NDK)
+      - name: Setup Android Toolchains
         uses: android-actions/setup-android@v3
-        with:
-          ndk-version: '25.2.9519653'
 
       - name: Setup Target Gradle 8.13
         uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: '8.13'
 
-      - name: Configure Android Local SDK inside Inner Folder
+      - name: Download NDK and Configure SDK/NDK Path
         run: |
-          # 1. Định vị chính xác thư mục android chứa mã nguồn thật
+          # 1. Cài đặt phiên bản NDK 25.2.9519653 bằng sdkmanager của hệ thống
+          echo "y" | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --install "ndk;25.2.9519653"
+          
+          # 2. Định vị thư mục dự án thật
           REAL_ANDROID_DIR="Mu-Online-CrossPlataform-main/android"
           
-          # 2. Tạo tệp local.properties để nạp SDK/NDK cho dự án thật
+          # 3. Tạo file cấu hình local.properties nạp trực tiếp đường dẫn SDK và NDK vừa tải
           echo "sdk.dir=$ANDROID_HOME" > "$REAL_ANDROID_DIR/local.properties"
           echo "ndk.dir=$ANDROID_HOME/ndk/25.2.9519653" >> "$REAL_ANDROID_DIR/local.properties"
           
-          echo "=== ĐÃ ĐỒNG BỘ ĐƯỜNG DẪN SDK & NDK CHO THƯ MỤC THẬT ==="
+          echo "=== ĐÃ CÀI ĐẶT NDK VÀ ĐỒNG BỘ ĐƯỜNG DẪN THÀNH CÔNG ==="
 
       - name: Build Android APK via Inner Gradle
         run: |
-          # Di chuyển thẳng vào thư mục android chứa mã nguồn game thật
+          # Di chuyển vào thư mục chứa mã nguồn game thật
           cd Mu-Online-CrossPlataform-main/android
           
-          # Cấp quyền thực thi và tiến hành biên dịch đóng gói APK debug
+          # Cấp quyền thực thi và tiến hành biên dịch đóng gói toàn bộ mã nguồn
           chmod +x gradlew
           ./gradlew assembleDebug --no-daemon
           
